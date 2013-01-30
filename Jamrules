@@ -28,9 +28,9 @@ CC = gcc ;
 C++ = g++ ;
 LINK = g++ ;
 
-CCFLAGS = -I$(TOP) -Wall -Werror -g ;
+CCFLAGS = -I$(TOP) -Wall -g ;
 
-C++FLAGS = -I$(TOP) -Wall -Werror -g ;
+C++FLAGS = -I$(TOP) -Wall  -g ;
 
 SDLC++FLAGS = `sdl-config --cflags` ;
 

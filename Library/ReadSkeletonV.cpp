@@ -9,6 +9,7 @@
 #include <stack>
 #include <vector>
 #include <Vector/Vector.hpp>
+#include <cstring>
 #include "Vfile.hpp"
 
 #include "ReadSkeleton.hpp"

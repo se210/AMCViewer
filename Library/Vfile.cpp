@@ -1,5 +1,6 @@
 #include "Vfile.hpp"
 #include <assert.h>
+#include <cstring>
 
 void Datagroup::print() {
 	if (GroupID==-1) { cout << "Datagroup not inited" << endl; return; }
