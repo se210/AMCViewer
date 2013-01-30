@@ -110,9 +110,9 @@ void writeFrameBvh(ostream &os, Character::Pose &pose, vector< int > order) {
 	Quatd xrot;
 	Quatd yrot;
 	Quatd zrot;
-	xrot.x = 1/sqrt(2); xrot.y = 0; xrot.z = 0; xrot.w = -1/sqrt(2);
-	yrot.y = 1/sqrt(2); yrot.x = 0; yrot.z = 0; yrot.w = -1/sqrt(2);
-	zrot.z = 1/sqrt(2); zrot.x = 0; zrot.y = 0; zrot.w = 1/sqrt(2);
+	xrot.x = 1/sqrt(2.0l); xrot.y = 0; xrot.z = 0; xrot.w = -1/sqrt(2.0l);
+	yrot.y = 1/sqrt(2.0l); yrot.x = 0; yrot.z = 0; yrot.w = -1/sqrt(2.0l);
+	zrot.z = 1/sqrt(2.0l); zrot.x = 0; zrot.y = 0; zrot.w = 1/sqrt(2.0l);
 
 	Vector3d root_position = vecd(pose.root_position);
 	//root_position = rotate(root_position, conjugate(rot));

@@ -441,7 +441,7 @@ void get_euler_skeleton(Library::Skeleton &transformer, const Library::Skeleton 
 					cross = y;
 			else
 				cross = normalize(cross);
-			transformer.bones[b].global_to_local = rotation(atan2(sintheta, costheta), cross);
+			transformer.bones[b].global_to_local = rotation((double)atan2(sintheta, costheta), cross);
 			assert(length(rotate(x, transformer.bones[b].global_to_local) - axis1) < 10e-5);
 			//cout << "Global to local after first axis computation: " << transformer.bones[b].global_to_local << endl;
 		} else if (transformer.bones[b].euler_axes.size()==2 || transformer.bones[b].euler_axes.size()==3) {
@@ -478,7 +478,7 @@ void get_euler_skeleton(Library::Skeleton &transformer, const Library::Skeleton 
 					cross = y;
 			else
 				cross = normalize(cross);
-			transformer.bones[b].global_to_local = rotation(atan2(sintheta, costheta), cross);
+			transformer.bones[b].global_to_local = rotation((double)atan2(sintheta, costheta), cross);
 			assert(length(rotate(x, transformer.bones[b].global_to_local) - axis1) < 10e-5);
 			//cout << "Global to local after first axis computation: " << transformer.bones[b].global_to_local << endl;
 
@@ -488,7 +488,7 @@ void get_euler_skeleton(Library::Skeleton &transformer, const Library::Skeleton 
 			Vector3d axis2 = transformer.bones[b].euler_axes[1];
 			float costheta2 = axis2 * yprime;
 			float sintheta2 = length(cross_product(yprime, axis2));
-			Quatd r = rotation(atan2(sintheta2, costheta2), axis1);
+			Quatd r = rotation((double)atan2(sintheta2, costheta2), axis1);
 			//cout << "Cross product of yprime and axis2: " << cross_product(yprime, axis2) << endl;
 			//cout << "Axis1: " << axis1 << endl;
 			//cout << "Axis2: " << axis2 << endl;

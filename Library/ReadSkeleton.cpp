@@ -4,7 +4,11 @@
 #include <cctype>
 #include <algorithm>
 #include <assert.h>
+#ifdef WINDOWS
+#include <winsock2.h>
+#else
 #include <arpa/inet.h>
+#endif
 
 #include "ReadSkeleton.hpp"
 

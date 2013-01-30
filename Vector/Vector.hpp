@@ -375,11 +375,6 @@ inline Vector< NUM, SIZE > normalize( Vector< NUM, SIZE > a) {
 	return a;
 }
 
-template< typename NUM, int SIZE >
-inline Vector< NUM, SIZE > perpendicular( Vector< NUM, SIZE > const & a) {
-	return make_vector(-a.c[1], a.c[0]);
-}
-
 
 //this does a 3d cross product -- may not perform well on other types.
 //will do very bad things on size==2
@@ -400,23 +395,23 @@ inline Vector< NUM, SIZE > lerp( Vector< NUM, SIZE > a, Vector< NUM, SIZE > cons
 	return a;
 }
 
-template< typename NUM, int SIZE >
-inline Vector< NUM, SIZE > min(Vector< NUM , SIZE > const &a, Vector< NUM, SIZE > const &b) {
-	Vector< NUM, SIZE > ret = a;
-	for (int i = 0; i < SIZE; ++i) {
-		if (b.c[i] < ret.c[i]) ret.c[i] = b.c[i];
-	}
-	return ret;
-}
-
-template< typename NUM, int SIZE >
-inline Vector< NUM, SIZE > max(Vector< NUM , SIZE > const &a, Vector< NUM, SIZE > const &b) {
-	Vector< NUM, SIZE > ret = a;
-	for (int i = 0; i < SIZE; ++i) {
-		if (b.c[i] > ret.c[i]) ret.c[i] = b.c[i];
-	}
-	return ret;
-}
+//template< typename NUM, int SIZE >
+//inline Vector< NUM, SIZE > min( Vector< NUM, SIZE > const &a, Vector< NUM, SIZE > const &b ) {
+//	Vector< NUM, SIZE > ret = a;
+//	for (int i = 0; i < SIZE; ++i) {
+//		if (b.c[i] < ret.c[i]) ret.c[i] = b.c[i];
+//	}
+//	return ret;
+//}
+//
+//template< typename NUM, int SIZE >
+//inline Vector< NUM, SIZE > max(Vector< NUM , SIZE > const &a, Vector< NUM, SIZE > const &b) {
+//	Vector< NUM, SIZE > ret = a;
+//	for (int i = 0; i < SIZE; ++i) {
+//		if (b.c[i] > ret.c[i]) ret.c[i] = b.c[i];
+//	}
+//	return ret;
+//}
 
 template< int SIZE >
 inline Vector< float, SIZE > abs(Vector< float, SIZE > const &a) {
@@ -603,6 +598,11 @@ inline Vector< NUM, SIZE > make_vector_p( NUM const *in ) { //hack!
 		ret.c[i] = in[i];
 	}
 	return ret;
+}
+
+template< typename NUM, int SIZE >
+inline Vector< NUM, SIZE > perpendicular( Vector< NUM, SIZE > const & a) {
+	return make_vector(-a.c[1], a.c[0]);
 }
 
 #endif
