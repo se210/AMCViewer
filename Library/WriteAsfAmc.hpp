@@ -14,6 +14,7 @@ namespace Library {
 
 void writeHeaderAmc(ostream &os, string comment = "");
 void writeFrameAmc(ostream &os, unsigned int frame, Character::Angles &angles);
+void writeVToFrameAmc(ostream &os, unsigned int frame, Character::Angles &angles);
 void writeVToAMC(unsigned int motion);
 void writeVSKToASF(unsigned int motion);
 

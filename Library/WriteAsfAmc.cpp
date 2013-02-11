@@ -12,6 +12,32 @@ void writeHeaderAmc(ostream &os, string comment) {
 void writeFrameAmc(ostream &os, unsigned int frame, Character::Angles &angles) {
 	os << frame << endl;
 	double c = 1.0;
+
+	os << "root " << angles.angles[0] << " " << angles.angles[1] << " " << angles.angles[2] << " " << c * angles.angles[3] << " " << c * angles.angles[4] << " " << c * angles.angles[5] << endl;
+
+	for (unsigned int b = 0; b < angles.skeleton->bones.size(); ++b) {
+		if (angles.skeleton->bones[b].dof.size()!=0)
+			os << angles.skeleton->bones[b].name << " ";
+
+		if (angles.skeleton->bones[b].dof.size()==3) {
+			os << c * angles.angles[angles.skeleton->bones[b].frame_offset + 0] << " ";
+			os << c * angles.angles[angles.skeleton->bones[b].frame_offset + 1] << " ";
+			os << c * angles.angles[angles.skeleton->bones[b].frame_offset + 2] << endl;
+		} else if (angles.skeleton->bones[b].dof.size()==2) {
+			os << c * angles.angles[angles.skeleton->bones[b].frame_offset + 0] << " ";
+			os << c * angles.angles[angles.skeleton->bones[b].frame_offset + 1] << endl;
+		} else if (angles.skeleton->bones[b].dof.size()==1) {
+			os << c * angles.angles[angles.skeleton->bones[b].frame_offset + 0] << endl;
+		}
+
+		if (angles.skeleton->bones[b].dof.find_first_not_of("xyz") != std::string::npos)
+			assert("Unknown dof in skeleton (translation?!) -> can't write amc frame.");
+	}
+}
+
+void writeVToFrameAmc(ostream &os, unsigned int frame, Character::Angles &angles) {
+	os << frame << endl;
+	double c = 1.0;
     //if (! angles.skeleton->ang_is_deg)
 	//	c = 180.0 / M_PI;
 
@@ -36,7 +62,7 @@ void writeFrameAmc(ostream &os, unsigned int frame, Character::Angles &angles) {
 		} else if (angles.skeleton->bones[b].euler_axes.size()==2) {
 			os << c * angles.angles[angles.skeleton->bones[b].frame_offset + 0] << " ";
 			assert(fabsf(c * angles.angles[angles.skeleton->bones[b].frame_offset + 1]) < .001);
-			os << c * angles.angles[angles.skeleton->bones[b].frame_offset + 2] << endl;
+			os << c * angles.angles[angles.skeleton->bones[b].frame_offset + 1] << endl;
 		} else if (angles.skeleton->bones[b].euler_axes.size()==1) {
 			os << c * angles.angles[angles.skeleton->bones[b].frame_offset + 0] << endl;
 			assert(fabsf(c * angles.angles[angles.skeleton->bones[b].frame_offset + 1]) < .001);
@@ -67,7 +93,7 @@ void writeVToAMC(unsigned int motion) {
 		Character::Angles angles;
 		m.get_pose(f, pose);
 		to_euler_angles(pose, angles, transformer);
-		writeFrameAmc(outAMC, f, angles);
+		writeVToFrameAmc(outAMC, f, angles);
 	}
 	outAMC.close();
 	cout << "Wrote AMC: " << amcfilename << endl;
