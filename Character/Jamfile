@@ -2,7 +2,7 @@ TOP = .. ;
 
 SubDir TOP Character ;
 
-NAMES = Cloth Particle Force SpringForceDraw Character pose_utils control_utils Skin skin_utils SVGDraw sensor_utils ;
+NAMES = Cloth Particle Force SpringForce Draw Character pose_utils control_utils Skin skin_utils SVGDraw sensor_utils ;
 
 ObjectC++Flags Draw SVGDraw : $(SDLC++FLAGS) ;
 ObjectC++Flags Skin : $(SDLC++FLAGS) ;
