@@ -117,6 +117,18 @@
     <ClCompile Include="..\..\Library\WriteBvh.cpp">
       <Filter>Source Files\Library</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Character\Cloth.cpp">
+      <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Character\Force.cpp">
+      <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Character\Particle.cpp">
+      <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Character\SpringForce.cpp">
+      <Filter>Source Files\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Browser\BrowseMode.hpp">
@@ -217,6 +229,18 @@
     </ClInclude>
     <ClInclude Include="..\..\Library\WriteBvh.hpp">
       <Filter>Header Files\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Character\Particle.hpp">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Character\SpringForce.hpp">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Character\Cloth.hpp">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Character\Force.hpp">
+      <Filter>Header Files\Character</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

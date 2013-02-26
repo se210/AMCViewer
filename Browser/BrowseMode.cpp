@@ -1,5 +1,6 @@
 #include "BrowseMode.hpp"
 
+#include <Character/Cloth.hpp>
 #include <Character/Draw.hpp>
 #include <Character/pose_utils.hpp>
 #include <Library/Library.hpp>
@@ -32,6 +33,8 @@ BrowseMode::BrowseMode() {
 	current_motion = 0;
 	time = 0.0f;
 	play_speed = 1.0f;
+
+	cloth.reset();
 }
 
 BrowseMode::~BrowseMode() {
@@ -48,13 +51,16 @@ void BrowseMode::update(float const elapsed_time) {
 	unsigned int frame = (unsigned int)(time / motion.skeleton->timestep);
 	if (frame >= motion.frames()) frame = motion.frames() - 1;
 
-	motion.get_pose(frame, current_pose);
+	//motion.get_pose(frame, current_pose);
+	motion.get_pose(1, current_pose);///delete this line and uncomment last line if you want the character to move again
 
 	if (track) {
 		Vector3f delta = current_pose.root_position - target;
 		target += delta;
 		camera += delta;
 	}
+
+	cloth.simulation_step();
 }
 
 void BrowseMode::handle_event(SDL_Event const &event) {
@@ -229,6 +235,13 @@ const int FloorSize = 100;
 		} else {
 			Character::draw(current_pose, null, pass == 2, pass != 1);
 		}
+
+		glPushMatrix();
+		glTranslate(null.position);
+		glRotatef(null.orientation * 180.0f / (float)M_PI, 0.0f, 1.0f, 0.0f);
+		cloth.draw();
+		glPopMatrix();
+
 		if (pass == 0) { //cleanup post-reflections.
 			glPopMatrix();
 			glDisable(GL_LIGHTING);
